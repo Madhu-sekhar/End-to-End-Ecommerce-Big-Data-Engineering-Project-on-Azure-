@@ -1,5 +1,5 @@
-# End-to-End-Ecommerce-Big-Data-Engineering-Project-on-Azure-
-This is an big data  end to end pipeline build with  azure services and data bricks  and other external resource :)
+# End-to-End-Ecommerce-Big-Data-Engineering-Project
+This is an end-to-end big data pipeline built using Azure services, Databricks, and external data sources :)
 
 ---
 
@@ -18,7 +18,7 @@ Final outputs are made available for **BI dashboards** (Power BI, Tableau) and *
 
 ## 🔄 **Workflow**
 
-### **1. Data Ingestion**
+**1. Data Ingestion**
 - **Sources**:  
   - GitHub (CSV files via HTTP connector)  
   - SQL Database (via JDBC connection)  
@@ -38,16 +38,11 @@ Final outputs are made available for **BI dashboards** (Power BI, Tableau) and *
   - External tables and curated views created from Silver  
   - Published datasets into the **Gold layer**
 
-### **4. Visualization & Consumption**
-- **Tools Used**:  
-  - Power BI  
-  - Tableau  
-  - Data Science notebooks  
-- **Purpose**: Business intelligence dashboards and advanced analytics
 
 ---
 
 ## 🏗️ Resources Used
+
 - **Azure Data Factory (ADF)** → Data ingestion pipelines  
 - **Azure Data Lake Storage Gen2 (ADLS)** → Bronze, Silver, Gold layers  
 - **Azure Databricks** → Data transformation and enrichment  
@@ -67,10 +62,10 @@ adls_gen2/
 ```
 ---
 
-##🔄 Data Pipeline Flow***
+##🔄 Data Pipeline Flow
 
 1. **Data Ingestion**
-
+uploded the data to the sources (MYSQL DB AND MONGO DB) using python scripts
 Raw CSV files hosted on GitHub accessed via HTTP connector
 Structured data from SQL Database ingested via JDBC connection
 Orchestrated using Azure Data Factory (ADF) pipelines
@@ -89,7 +84,7 @@ Queried using Azure Synapse Analytics (Serverless SQL Pool)
 Created external tables and curated views from Silver layer
 Published business-ready datasets into the Gold layer
 
---8
+---
 
 ##📸 Project Screenshots
 
@@ -119,23 +114,40 @@ Published business-ready datasets into the Gold layer
 ##📊 Key Learnings
 
 Architected a full-stack Medallion Architecture using Azure-native services
+
 Developed an automated ETL pipeline leveraging Azure Data Factory and Databricks (Spark)
+
 Engineered a scalable serving layer with Azure Synapse Analytics (Serverless SQL Pool)
+
 Executed end-to-end cloud-native data engineering workflows, from ingestion to visualization
+
+Applied the Medallion Architecture across Bronze, Silver, and Gold layers
+
+Secured integrations between Azure services using App Registration and Role-Based Access Control (RBAC)
+
+Implemented data quality checks and schema normalization for reliable processing
+
+Explored NoSQL (MongoDB) for business enrichment and external data integration
+
+Worked with Synapse Serverless SQL Pools and OPENROWSET for querying external data efficiently
+
 ---
 
 ##📌Technology Stack
 
-• Orchestration: Azure Data Factory
-• Storage: Azure Data Lake Storage Gen2
-• Processing: Azure Databricks (PySpark)
-• Analytics: Azure Synapse Analytics
-• Sources: MySQL, GitHub (CSV), MongoDB
-• Languages: Python, SQL,Pyspak
+• Orchestration: Azure Data Factory 
+• Storage: Azure Data Lake Storage Gen2 
+• Processing: Azure Databricks (PySpark) 
+• Analytics: Azure Synapse Analytics 
+• Sources: MySQL, GitHub (CSV), MongoDB 
+• Languages: Python, SQL, PySpark
+
+
 ---
 ##📌Next Steps
 
 • Connect pipelines to Power BI for dashboards and reports
-• Automate pipelines using triggers in Azure Data Factory
+• Automate pipelines using triggers in Azure Data Factory 
 • Implement basic CI/CD for pipeline deployment
+
 ---
