@@ -111,7 +111,7 @@ Published business-ready datasets into the Gold layer
 <img width="1904" height="888" alt="image" src="https://github.com/user-attachments/assets/33293310-f101-4ab5-8a37-c5c6610ac264" />
 
 ----
-📊 **Key Learnings**
+##📊Key Learnings
 
 Architected a full-stack Medallion Architecture using Azure-native services
 Developed an automated ETL pipeline leveraging Azure Data Factory and Databricks (Spark)
@@ -125,18 +125,19 @@ Worked with Synapse Serverless SQL Pools and OPENROWSET for querying external da
 
 ---
 
-📌**Technology Stack**
+## 🛠️ Technology Stack
 
-• Orchestration: Azure Data Factory 
-• Storage: Azure Data Lake Storage Gen2 
-• Processing: Azure Databricks (PySpark) 
-• Analytics: Azure Synapse Analytics 
-• Sources: MySQL, GitHub (CSV), MongoDB 
-• Languages: Python, SQL, PySpark
+- Orchestration: Azure Data Factory  
+- Storage: Azure Data Lake Storage Gen2  
+- Processing: Azure Databricks (PySpark)  
+- Analytics: Azure Synapse Analytics  
+- Sources: MySQL, GitHub (CSV), MongoDB  
+- Languages: Python, SQL, PySpark  
+
 
 
 ---
-📌**Next Steps**
+## 📌Next Steps
 
 • Connect pipelines to Power BI for dashboards and reports
 • Automate pipelines using triggers in Azure Data Factory 
