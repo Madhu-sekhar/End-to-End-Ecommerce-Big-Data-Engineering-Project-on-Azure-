@@ -1,0 +1,204 @@
+# Databricks notebook source
+spark
+
+# COMMAND ----------
+
+storage_account = 
+application_id = 
+directory_id = 
+
+
+spark.conf.set(f"fs.azure.account.auth.type.{storage_account}.dfs.core.windows.net", "OAuth")
+spark.conf.set(f"fs.azure.account.oauth.provider.type.{storage_account}.dfs.core.windows.net", "org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider")
+spark.conf.set(f"fs.azure.account.oauth2.client.id.{storage_account}.dfs.core.windows.net", application_id)
+spark.conf.set(f"fs.azure.account.oauth2.client.secret.{storage_account}.dfs.core.windows.net", "")
+spark.conf.set(f"fs.azure.account.oauth2.client.endpoint.{storage_account}.dfs.core.windows.net", f"https://login.microsoftonline.com/{directory_id}/oauth2/token")
+
+# COMMAND ----------
+
+'''
+Here we are reading the all eh files that are in teh adls making theris base path constant and changing the file names 
+'''
+base_path="abfss://olistdata@olistdatasa.dfs.core.windows.net/Bronze/"
+customer_path=base_path+"olist_customers_dataset.csv"
+geo_loaction_path=base_path+"olist_geolocation_dataset.csv"
+order_items_path=base_path+"olist_order_items_dataset.csv"
+order_payments_path=base_path+"olist_order_payments_dataset.csv"
+order_reviews_path=base_path+"olist_order_reviews_dataset.csv"
+orders_data_path=base_path+"olist_orders_dataset.csv"
+products_data_path=base_path+"olist_products_dataset.csv"
+sellers_data_path=base_path+"olist_sellers_dataset.csv"
+
+customer_df=spark.read.format("csv")\
+    .option("header", 'true')\
+    .option("inferSchema", 'true')\
+    .load(customer_path)
+    
+geo_df=spark.read.format("csv")\
+    .option("header", 'true')\
+    .option("inferSchema", 'true')\
+    .load(geo_loaction_path)
+
+order_items_df=spark.read.format("csv")\
+               .option("header", 'true')\
+                .option("inferSchema", 'true')\
+                .load(order_items_path)
+
+order_payments_df=spark.read.format("csv")\
+    .option("header", 'true')\
+    .option("inferSchema", 'true')\
+    .load(order_payments_path)
+
+
+order_reviews_df=spark.read.format("csv")\
+    .option("header", 'true')\
+    .option("inferSchema", 'true')\
+    .load(order_reviews_path)
+
+order_data_df=spark.read.format("csv")\
+    .option("header", 'true')\
+    .option("inferSchema", 'true')\
+    .load(orders_data_path)
+
+products_data_df=spark.read.format("csv")\
+    .option("header", 'true')\
+    .option("inferSchema", 'true')\
+    .load(products_data_path)
+
+sellers_data_df=spark.read.format("csv")\
+    .option("header", 'true')\
+    .option("inferSchema", 'true')\
+    .load(sellers_data_path)
+
+
+
+# COMMAND ----------
+
+''' This cell is created for the  data enrichemnt from the mango db data '''
+from pymongo import MongoClient
+
+# COMMAND ----------
+
+# importing module
+from pymongo import MongoClient
+
+hostname = "u4o16t.h.filess.io"
+database = "olistnosqldb_cagestayso"
+port = "27018"
+username = "olistnosqldb_cagestayso"
+password = "4cad2f6ab57d03dc1ff669223bc8ff7a3b07b0b5"
+
+uri = "mongodb://" + username + ":" + password + "@" + hostname + ":" + port + "/" + database
+
+# Connect with the portnumber and host
+client = MongoClient(uri)
+
+# Access database
+mydatabase = client[database]
+mydatabase
+
+
+# COMMAND ----------
+
+collection=mydatabase['product_categories']
+import pandas as pd
+mongo_data=pd.DataFrame(list(collection.find()))
+
+mongo_data=mongo_data.drop(['_id'],axis=1)
+print(mongo_data)
+
+
+# COMMAND ----------
+
+display(products_data_df)
+
+# COMMAND ----------
+
+from pyspark.sql.functions import *
+def remove_duplicates(df,name):
+    print('removing the duplicates from '+name)
+    df=df.dropDuplicates().na.drop('all')
+    return df
+order_data_df=remove_duplicates(order_data_df,'order_data_df')
+display(order_data_df)
+
+
+# COMMAND ----------
+
+order_data_df.printSchema()
+
+# COMMAND ----------
+
+display(order_data_df)
+
+# COMMAND ----------
+
+order_data_df=order_data_df.withColumn('actual_deliveryindays',datediff(col('order_delivered_customer_date'),col('order_purchase_timestamp')))
+
+# COMMAND ----------
+
+order_data_df=order_data_df.withColumn('estimated_deliveryindays',datediff(col('order_estimated_delivery_date'),col('order_purchase_timestamp')))
+
+# COMMAND ----------
+
+display(order_data_df)
+
+# COMMAND ----------
+
+order_data_df=order_data_df.withColumnRenamed('actual_deliveryindays','actual_delivery_days')\
+    .withColumnRenamed('estimated_deliveryindays','estimated_delivery_days')
+
+# COMMAND ----------
+
+orders_customers_df=order_data_df.join(customer_df,on='customer_id',how='left')
+orders_payments_df=orders_customers_df.join(order_payments_df,on='order_id',how='left')
+orders_itmes_df=orders_payments_df.join(order_items_df,on='order_id',how='left')
+orders_items_products=orders_itmes_df.join(products_data_df,on='product_id',how='left')
+final_df=orders_items_products.join(sellers_data_df,on='seller_id',how='left')
+
+
+
+# COMMAND ----------
+
+display(final_df)
+
+# COMMAND ----------
+
+print(mongo_data)
+
+# COMMAND ----------
+
+mongo_df=spark.createDataFrame(mongo_data)
+
+# COMMAND ----------
+
+final_df=final_df.join(mongo_df,on='product_category_name',how='left')
+display(final_df)
+
+# COMMAND ----------
+
+final_df=final_df.drop('product_category_name')
+
+# COMMAND ----------
+
+final_df=final_df.withColumnRenamed('product_category_name_english','product_category_name')
+display(final_df)
+
+# COMMAND ----------
+
+def remove_duplicate_columns(df):
+    columns=df.columns
+    seen_columns=set()
+    columns_to_drop=[]
+    for column in columns:
+        if column in seen_columns:
+            columns_to_drop.append(column)
+        else:
+            seen_columns.add(column)
+    df_cleaned=df.drop(*columns_to_drop)
+    return df_cleaned
+final_df=remove_duplicate_columns(final_df)
+
+# COMMAND ----------
+
+final_df.write.mode('overwrite').parquet("abfss://olistdata@olistdatasa.dfs.core.windows.net/Silver")
