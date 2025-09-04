@@ -2,7 +2,7 @@
 This is an big data  end to end pipeline build with  azure services and data bricks  and other external resource :)
 
 
-📌 ***Project Overview***
+##📌 ***Project Overview***
 
 This project showcases a robust end-to-end data engineering pipeline developed on Microsoft Azure, leveraging the  E-Commerce Public Dataset. It follows the Medallion Architecture—structured into Bronze, Silver, and Gold layers—to deliver scalable, dependable, and analytics-ready data workflows from raw ingestion to curated insights.
 
