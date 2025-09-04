@@ -16,7 +16,7 @@ Final outputs are made available for **BI dashboards** (Power BI, Tableau) and *
 
 ---
 
-## 🔄 **Workflow**
+## 🔄 Workflow
 
 **1. Data Ingestion**
 - **Sources**:  
@@ -49,7 +49,7 @@ Final outputs are made available for **BI dashboards** (Power BI, Tableau) and *
 - **MongoDB (External)** → Enrichment dataset  
 - **Azure Synapse Analytics** → Serverless SQL pool for querying and serving  
 
----
+-----
 
 ## 📂 **Medallion Architecture**
 
@@ -60,9 +60,9 @@ adls_gen2/
 └── gold/     # Curated data served via Synapse (Views / Tables)
 
 ```
----
+-----
 
-##🔄 Data Pipeline Flow
+##🔄 **Data Pipeline Flow**
 
 1. **Data Ingestion**
 uploded the data to the sources (MYSQL DB AND MONGO DB) using python scripts
@@ -84,9 +84,9 @@ Queried using Azure Synapse Analytics (Serverless SQL Pool)
 Created external tables and curated views from Silver layer
 Published business-ready datasets into the Gold layer
 
----
+----
 
-##📸 Project Screenshots
+###📸 **Project Screenshots**
 
 **Azure Resources Overview**
 
@@ -110,8 +110,8 @@ Published business-ready datasets into the Gold layer
 
 <img width="1904" height="888" alt="image" src="https://github.com/user-attachments/assets/33293310-f101-4ab5-8a37-c5c6610ac264" />
 
----
-##📊 Key Learnings
+----
+##📊 **Key Learnings**
 
 Architected a full-stack Medallion Architecture using Azure-native services
 
@@ -133,7 +133,7 @@ Worked with Synapse Serverless SQL Pools and OPENROWSET for querying external da
 
 ---
 
-##📌Technology Stack
+###📌**Technology Stack**
 
 • Orchestration: Azure Data Factory 
 • Storage: Azure Data Lake Storage Gen2 
@@ -144,7 +144,7 @@ Worked with Synapse Serverless SQL Pools and OPENROWSET for querying external da
 
 
 ---
-##📌Next Steps
+###📌**Next Steps**
 
 • Connect pipelines to Power BI for dashboards and reports
 • Automate pipelines using triggers in Azure Data Factory 
