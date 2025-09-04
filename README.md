@@ -101,9 +101,10 @@ Published business-ready datasets into the Gold layer
 <img width="1883" height="810" alt="image" src="https://github.com/user-attachments/assets/a1422eec-fb22-4e12-a9be-47d95f7ac299" />
 
 
-**Databricks Note book**
+**Databricks Note book samples**
 
-<img width="1862" height="889" alt="image" src="https://github.com/user-attachments/assets/0e83b607-d165-4e98-8d6d-7dafbe835d57" />
+<img width="1860" height="894" alt="image" src="https://github.com/user-attachments/assets/9f9060aa-10e9-40dd-8d6e-bdba0883630e" />
+
 
 
 **Synapse Analytics Queries & Views**
