@@ -5,7 +5,7 @@ This is an end-to-end big data pipeline built using Azure services, Databricks, 
 
 ## 📌 **Project Overview**
 
-This project demonstrates a complete, cloud-native **big data engineering pipeline** built on **Microsoft Azure**, using the [Brazilian E-Commerce Public Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce). It follows the **Medallion Architecture**—structured into **Bronze**, **Silver**, and **Gold** layers—to ensure scalable, modular, and analytics-ready data processing.
+This project demonstrates a complete, cloud-native **big data engineering pipeline** built on **Microsoft Azure**, using the [Brazilian E-Commerce Public Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce). It follows the **Medallion Architecture** structured into **Bronze**, **Silver**, and **Gold** layers to ensure scalable, modular, and analytics-ready data processing.
 
 The pipeline begins with raw data ingestion from **GitHub** and a **SQL database** using **Azure Data Factory**, storing it in **Azure Data Lake Storage Gen2**. It then leverages **Azure Databricks (Apache Spark)** for transformation, cleansing, and enrichment, including integration of external data from **MongoDB**. The refined datasets are served through **Azure Synapse Analytics (Serverless SQL Pool)**, enabling powerful querying and downstream consumption.
 
