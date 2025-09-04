@@ -62,7 +62,7 @@ adls_gen2/
 ```
 ---
 
-🔄 **Data Pipeline Flow**
+## 🔄 **Data Pipeline Flow**
 
 1. **Data Ingestion**
 uploded the data to the sources (MYSQL DB AND MONGO DB) using python scripts
@@ -86,7 +86,7 @@ Published business-ready datasets into the Gold layer
 
 ----
 
-📸 **Project Screenshots**
+## 📸 **Project Screenshots**
 
 **Azure Resources Overview**
 
@@ -111,17 +111,18 @@ Published business-ready datasets into the Gold layer
 <img width="1904" height="888" alt="image" src="https://github.com/user-attachments/assets/33293310-f101-4ab5-8a37-c5c6610ac264" />
 
 ----
-##📊Key Learnings
+## 📊**Key Learnings**
 
-Architected a full-stack Medallion Architecture using Azure-native services
-Developed an automated ETL pipeline leveraging Azure Data Factory and Databricks (Spark)
-Engineered a scalable serving layer with Azure Synapse Analytics (Serverless SQL Pool)
-Executed end-to-end cloud-native data engineering workflows, from ingestion to visualization
-Applied the Medallion Architecture across Bronze, Silver, and Gold layers
-Secured integrations between Azure services using App Registration and Role-Based Access Control (RBAC)
-Implemented data quality checks and schema normalization for reliable processing
-Explored NoSQL (MongoDB) for business enrichment and external data integration
-Worked with Synapse Serverless SQL Pools and OPENROWSET for querying external data efficiently
+- Architected a full-stack Medallion Architecture using Azure-native services  
+- Developed an automated ETL pipeline leveraging Azure Data Factory and Databricks (Spark)  
+- Engineered a scalable serving layer with Azure Synapse Analytics (Serverless SQL Pool)  
+- Executed end-to-end cloud-native data engineering workflows, from ingestion to visualization  
+- Applied the Medallion Architecture across Bronze, Silver, and Gold layers  
+- Secured integrations between Azure services using App Registration and Role-Based Access Control (RBAC)  
+- Implemented data quality checks and schema normalization for reliable processing  
+- Explored NoSQL (MongoDB) for business enrichment and external data integration  
+- Worked with Synapse Serverless SQL Pools and OPENROWSET for querying external data efficiently  
+
 
 ---
 
@@ -137,10 +138,14 @@ Worked with Synapse Serverless SQL Pools and OPENROWSET for querying external da
 
 
 ---
-## 📌Next Steps
 
-• Connect pipelines to Power BI for dashboards and reports
-• Automate pipelines using triggers in Azure Data Factory 
-• Implement basic CI/CD for pipeline deployment
+## 📌 Next Steps
+
+- Connect pipelines to Power BI for dashboards and reports  
+- Automate pipelines using triggers in Azure Data Factory  
+- Implement basic CI/CD for pipeline deployment  
+
+
+
 
 ---
